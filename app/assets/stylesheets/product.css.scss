@@ -1,0 +1,16 @@
+// Place all the styles related to the product controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "_base";
+
+#search-form{
+  input[type=text]{
+    width: 400px;
+    height: 30px;
+    border: 1px solid #CCCCCC;
+    padding: 0 0 0 5px;
+    font-size: 14px;
+    @include border-radius(5px);
+  }
+}

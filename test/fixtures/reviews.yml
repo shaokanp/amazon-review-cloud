@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  userId: MyString
+  profileName: MyString
+  helpfulnessTotal: 1
+  helpfulness: 1
+  score: 1
+  time: 2014-05-20 23:02:15
+  summary: MyString
+  text: MyString
+
+two:
+  userId: MyString
+  profileName: MyString
+  helpfulnessTotal: 1
+  helpfulness: 1
+  score: 1
+  time: 2014-05-20 23:02:15
+  summary: MyString
+  text: MyString
