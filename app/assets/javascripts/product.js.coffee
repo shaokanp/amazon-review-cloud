@@ -3,16 +3,18 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(->
-  $('#search-form').bind('ajax:success', (evt, data, status, xhr)->
-    console.log(data);
-    for p in data
-      $('product-list').append('
-        <p>
-          p.title
-        </p>
-        <p>
-          p.price
-        </p>
-      ')
-  );
-);
+  $(document).on('click','.product-cell', {} , onProductClick)
+)
+
+onProductClick = (e) ->
+  console.log($(e.currentTarget).children('.product-id').html())
+  $.ajax(
+    url: '/aspects.js'
+    data:
+      product_id: $(e.currentTarget).children('.product-id').html()
+    success: (data, textStatus, jqXHR)->
+      console.log(data)
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log('Get aspects error. ' + textStatus)
+  )
+

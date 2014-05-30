@@ -1,10 +1,10 @@
+<div id="main-container">
+  <%= form_tag("/products.js", method: "get", remote: "true",id: "search-form") do %>
+      <%= text_field_tag(:keyword) %>
+      <%= submit_tag("Search") %>
+  <% end %>
 
-<%= form_tag("/products.json", method: "get", remote: "true",id: "search-form") do %>
-    <%= label_tag(:keyword, "Search for:") %>
-    <%= text_field_tag(:keyword) %>
-    <%= submit_tag("Search") %>
-<% end %>
+  <div id="product-list">
 
-<div id="product-list">
-
+  </div>
 </div>
