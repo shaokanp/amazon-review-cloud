@@ -4,7 +4,6 @@
 
 $(document).ready(->
   $(document).on('click','.product-cell', {} , onProductClick)
-
 )
 
 onProductClick = (e) ->
@@ -13,9 +12,9 @@ onProductClick = (e) ->
     url: '/aspects.js'
     data:
       product_id: $(e.currentTarget).children('.product-id').html()
-    success: (PlainObject data, String textStatus, jqXHR jqXHR )->
+    success: (data, textStatus, jqXHR)->
       console.log(data)
-    error: (jqXHR jqXHR, String textStatus, String errorThrown) ->
+    error: (jqXHR, textStatus, errorThrown) ->
       console.log('Get aspects error. ' + textStatus)
   )
 
