@@ -5,4 +5,5 @@ class Product
   field :price, type: Float
   field :imageUrl, type: String
   embeds_many :reviews
+  embeds_many :aspects
 end
