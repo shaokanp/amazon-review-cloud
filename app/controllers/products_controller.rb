@@ -29,8 +29,8 @@ class ProductsController < ApplicationController
     req = Vacuum.new
     req.associate_tag = 'foobar'
     req.configure(
-        aws_access_key_id: 'AKIAIQWGW3XYCCPTXN6A',
-        aws_secret_access_key: '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',
+        aws_access_key_id: ENV['AWS_ID'],
+        aws_secret_access_key: ENV['AWS_SECRET'],
         associate_tag: 'tag',
     )
     res = req.item_lookup(query: { 'IdType' => 'ASIN', 'ItemId' => itemId, 'ResponseGroup' => 'Images'})
