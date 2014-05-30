@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
         products = Product.where(title: /.*#{params[:keyword]}*/i)
         render json: products
       }
+      format.js{
+        @products = Product.where(title: /.*#{params[:keyword]}*/i)
+
+      }
     end
   end
 

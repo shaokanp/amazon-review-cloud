@@ -1,11 +1,10 @@
-<%= image_tag(product.imageUrl) %>
-
-<p>
-  <%= product.title %>
-</p>
-<p>
-  <%= product.price %>
-</p>
-<p>
-  <%= render product.reviews %>
-</p>
+<div class="product-cell">
+  <%= image_tag(product.imageUrl) %>
+  <p>
+    <%= product.title %>
+  </p>
+  <p>
+    <%= product.price %>
+  </p>
+  <span class="product-id"><%= product.productId%></span>
+</div>
