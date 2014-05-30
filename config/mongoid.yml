@@ -9,7 +9,7 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - 128.199.227.196:27017
+        - 106.187.94.111:27017
       #  - localhost:27017
       options:
         # Change the default write concern. (default = { w: 1 })
