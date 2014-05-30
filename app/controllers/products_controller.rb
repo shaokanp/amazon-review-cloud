@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
         render json: products
       }
       format.js{
-        @products = Product.where(title: /.*#{params[:keyword]}*/i)
+        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i)
 
       }
     end
