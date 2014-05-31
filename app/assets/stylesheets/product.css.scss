@@ -20,8 +20,10 @@ $blueprint_grid_width: 80px;
       @include column(1.5);
     }
   }
-
   #product-list{
+    @include column(10);
+  }
+  #product-show{
     @include column(10);
   }
 }
@@ -55,10 +57,22 @@ $blueprint_grid_width: 80px;
   height: 100px;
   padding: 10px;
   border-bottom: 1px solid #BBBBBB;
+  .product-image{
+    float: left;
+    margin-right: 10px;
+    height: 100px;
+    image{
+      height: 100px;
+    }
+  }
   .product-id{
     display: none;
   }
   &:hover{
     background-color: #EEEEEE;
   }
+}
+
+#product-show{
+  display:none;
 }

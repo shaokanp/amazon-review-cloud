@@ -3,15 +3,22 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready(->
+  window.location.hash = ''
   $(document).on('click','.product-cell', {} , onProductClick)
+  $(window).on('navigate',(event, data) ->
+      direction = data.state.direction
+      if(direction == 'back')
+        $('#product-list').show()
+        $('#product-show').hide()
+      if(direction == 'forward')
+        $('#product-list').hide()
+        $('#product-show').show()
+  )
 )
 
 onProductClick = (e) ->
-  console.log($(e.currentTarget).children('.product-id').html())
   $.ajax(
-    url: '/aspects.js'
-    data:
-      product_id: $(e.currentTarget).children('.product-id').html()
+    url: '/products/' + $(e.currentTarget).children('.product-id').html() + '.js'
     success: (data, textStatus, jqXHR)->
       console.log(data)
     error: (jqXHR, textStatus, errorThrown) ->

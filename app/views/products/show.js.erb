@@ -1,0 +1,15 @@
+window.location.hash = '<%= @product.productId %>';
+
+$('#product-info').html('<%= escape_javascript(render partial:'product', locals: { product: @product }) %>');
+
+aspectsArray = [
+<% @product.aspects.each do |t| %>
+    {text: '<%= t.word %>', weight: <%= t.frequency %>},
+<% end %>];
+
+$('#textcloud').jQCloud(aspectsArray);
+$('#review-list').empty();
+$('#product-list').css('display', 'none');
+$('#product-show').css('display', 'block');
+
+

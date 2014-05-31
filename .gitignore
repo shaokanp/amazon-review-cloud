@@ -19,3 +19,4 @@
 config/secrets.yml
 .idea/workspace.xml
 .idea/tasks.xml
+config/application.yml

@@ -1,13 +1,15 @@
 <div class="product-cell">
-  <%= image_tag(product.imageUrl) %>
+  <% if !product.imageUrl.nil? %>
+    <div class="product-image">
+      <%= image_tag(product.imageUrl) %>
+    </div>
+  <% end %>
+
   <p>
     <%= product.title %>
   </p>
   <p>
     <%= product.price %>
-  </p>
-  <p>
-    <%= product.aspects %>
   </p>
   <span class="product-id"><%= product.productId%></span>
 </div>
