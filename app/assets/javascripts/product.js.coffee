@@ -18,3 +18,11 @@ onProductClick = (e) ->
       console.log('Get aspects error. ' + textStatus)
   )
 
+$('#search-box input[type=submit]').click( (e) ->
+  $('#top-container').animate(
+    top: "-40px"
+  ,1000,'easeOutCubic')
+  $('#big-title-box').animate(
+    opacity: 0
+  ,600)
+)

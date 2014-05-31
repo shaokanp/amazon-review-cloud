@@ -1,8 +1,35 @@
 <div id="main-container">
-  <%= form_tag("/products.js", method: "get", remote: "true",id: "search-form") do %>
-      <%= text_field_tag(:keyword) %>
-      <%= submit_tag("Search") %>
-  <% end %>
+
+    <div id="top-container">
+
+      <div id="big-title-box" class="row">
+
+        <h1 class="small-8 small-centered column">
+          Want to search something ?
+        </h1>
+
+      </div>
+
+      <div id="search-box" class="row">
+          <div class="column small-8 small-centered">
+            <div class="row">
+              <%= form_tag("/products.js", method: "get", remote: "true",id: "search-form") do %>
+                <div class="small-10 columns">
+                    <%= text_field_tag(:keyword) %>
+                </div>
+                <div class="small-2 columns">
+                    <%= submit_tag "Search", class: "button radius success" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
+
+
 
   <div id="product-list">
 
