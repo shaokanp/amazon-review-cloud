@@ -26,3 +26,10 @@ $('#search-box input[type=submit]').click( (e) ->
     opacity: 0
   ,600)
 )
+
+
+showProductList = ->
+  alert('ha')
+  $('#product-list').animate(
+    opacity: 1
+  ,600)

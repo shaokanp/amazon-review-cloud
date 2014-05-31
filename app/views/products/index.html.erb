@@ -10,7 +10,8 @@
 
       </div>
 
-      <div id="search-box" class="row">
+      <div id="search-box">
+        <div class="row">
           <div class="column small-8 small-centered">
             <div class="row">
               <%= form_tag("/products.js", method: "get", remote: "true",id: "search-form") do %>
@@ -18,20 +19,21 @@
                     <%= text_field_tag(:keyword) %>
                 </div>
                 <div class="small-2 columns">
-                    <%= submit_tag "Search", class: "button radius success" %>
+                    <%= submit_tag "Search", class: "button tiny radius success" %>
                 </div>
               <% end %>
             </div>
           </div>
-
+        </div>
       </div>
 
     </div>
 
 
 
+  <div class="row">
+    <div id="product-list" class="small-8 column small-centered">
 
-  <div id="product-list">
-
+    </div>
   </div>
 </div>

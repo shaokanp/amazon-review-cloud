@@ -1,2 +1,9 @@
+showProductList = function(){
+  $('#product-list').animate({opacity: 1},600);
+}
+
 $('#product-list').empty().append('<%= j render @products %>');
+showProductList();
+
+
 

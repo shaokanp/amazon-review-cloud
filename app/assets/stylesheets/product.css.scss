@@ -23,17 +23,31 @@ body {
       text-align: center;
     }
   }
+
+  #search-box{
+    @include display-box;
+    @include box-align(center);
+  }
+
 }
 
+#product-list{
+  opacity: 0;
+}
 
 .product-cell{
   cursor:pointer;
+  background-color: #fff;
+  @include border-radius(5px);
+  .product-title{
+       
+  }
 
-  border-bottom: 1px solid #BBBBBB;
+  .product-price{
+
+  }
+
   .product-id{
     display: none;
-  }
-  &:hover{
-    background-color: #EEEEEE;
   }
 }

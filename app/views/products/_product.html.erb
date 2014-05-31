@@ -1,13 +1,14 @@
 <div class="product-cell">
   <%= image_tag(product.imageUrl) %>
   <p>
-    <%= product.title %>
+    <span class="product-title">
+      <%= product.title %>
+    </span>
   </p>
   <p>
-    <%= product.price %>
-  </p>
-  <p>
-    <%= product.aspects %>
+    <span class="product-price">
+      <%= product.price %>
+    </span>
   </p>
   <span class="product-id"><%= product.productId%></span>
 </div>
