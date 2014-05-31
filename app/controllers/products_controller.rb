@@ -13,6 +13,9 @@ class ProductsController < ApplicationController
       }
       format.js{
         @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i)
+        #@products.each do |product|
+        #  product.imageUrl = image_url_by_itemid(product.productId) 	
+        #end
       }
     end
   end
@@ -28,6 +31,7 @@ class ProductsController < ApplicationController
   private
 
   def image_url_by_itemid (itemId)
+    puts "item id:" + itemId
     req = Vacuum.new
     req.associate_tag = 'foobar'
     req.configure(
