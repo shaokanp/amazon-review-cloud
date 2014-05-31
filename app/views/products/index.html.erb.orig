@@ -35,17 +35,21 @@
     <div id="product-list" class="small-8 column small-centered">
 
     </div>
-    <div id="product-show">
-      <div id="product-info">
-
-      </div>
-      <div id="textcloud">
-
-      </div>
-      <div id="review-list">
-
-      </div>
   </div>
-  </div>
-
+<<<<<<< HEAD
 </div>
+=======
+
+  <div id="product-show">
+    <div id="product-info">
+
+    </div>
+    <div id="textcloud">
+
+    </div>
+    <div id="review-list">
+
+    </div>
+  </div>
+</div>
+>>>>>>> 68371226242f8606b32f9f21919e89acf1b2bb0e

@@ -23,7 +23,6 @@ body {
       text-align: center;
     }
   }
-
   #search-box{
     @include display-box;
     @include box-align(center);
