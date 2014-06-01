@@ -32,6 +32,9 @@ $('#search-box input[type=submit]').click( (e) ->
   $('#big-title-box').animate(
     opacity: 0
   ,600)
+  $('body').animate(
+    backgroundColor: "#EEEEEE"
+  ,1000)
 )
 
 
