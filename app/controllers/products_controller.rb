@@ -29,11 +29,16 @@ class ProductsController < ApplicationController
   end
 
   def image_url
-    productId = Product.where(productId: params[:product_id]).first.productId
-    url = image_url_by_itemid(productId)
+    product_ids = params[:product_ids].split(",")
+    urls = []
+    i=0
+    product_ids.each do |product_id|
+      urls[i] = image_url_by_itemid(product_id)
+      i = i + 1
+    end
     respond_to do |format|
       format.json{
-        render json: url
+        render json: urls
       }
     end
   end
