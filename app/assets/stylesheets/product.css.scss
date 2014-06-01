@@ -5,7 +5,7 @@
 @import "_base";
 
 body {
-  background-color: $bg-color;
+  background-color: $bg-color-init;
 }
 
 #main-container{
@@ -38,6 +38,10 @@ body {
   cursor:pointer;
   background-color: #fff;
   @include border-radius(5px);
+  .product-image{
+    float: left;
+    margin-right: 10px;
+  }
   .product-title{
        
   }

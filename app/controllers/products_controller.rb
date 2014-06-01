@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     req.configure(
         aws_access_key_id: AWS['AWS_ID'],
         aws_secret_access_key: AWS['AWS_SECRET'],
-        associate_tag: 'tag',
+        associate_tag: 'tag'
     )
     res = req.item_lookup(query: { 'IdType' => 'ASIN', 'ItemId' => itemId, 'ResponseGroup' => 'Images'})
     result = res.to_h

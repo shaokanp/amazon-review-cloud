@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RUBY_MODULE" version="4">
   <component name="CompassSettings">
-    <option name="compassExecutableFilePath" value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p247@global/gems/compass-0.12.2/bin/compass" />
+    <option name="compassExecutableFilePath" value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p247@global/gems/compass-0.12.6/bin/compass" />
     <option name="compassSupportEnabled" value="true" />
-    <option name="importPaths">
-      <list>
-        <option value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.3/frameworks/blueprint/stylesheets" />
-        <option value="$USER_HOME$/.rvm/gems/ruby-2.0.0-p195/gems/compass-0.12.3/frameworks/compass/stylesheets" />
-      </list>
-    </option>
   </component>
   <component name="FacetManager">
     <facet type="RailsFacetType" name="Ruby on Rails">
@@ -188,6 +182,7 @@
     <orderEntry type="library" scope="PROVIDED" name="jqcloud-rails (v1.0.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-easing-rails (v0.0.1, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v3.1.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jquery-ui-rails (v4.2.1, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.1, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.5.4, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25.1, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
@@ -218,7 +213,6 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.39, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.5.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="vacuum (v1.1.0, RVM: ruby-2.0.0-p247 [global]) [gem]" level="application" />
-    <orderEntry type="library" name="compass-library" level="project" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
