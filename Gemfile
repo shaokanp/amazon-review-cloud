@@ -53,4 +53,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# amazon
 gem 'vacuum'
+gem 'amazon-ecs'

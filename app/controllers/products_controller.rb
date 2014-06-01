@@ -12,10 +12,12 @@ class ProductsController < ApplicationController
         render json: products
       }
       format.js{
-        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i)
-        #@products.each do |product|
-        #  product.imageUrl = image_url_by_itemid(product.productId) 	
-        #end
+        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).entries
+        @products.each do |product|
+          product.imageUrl = image_url_by_itemid(product.productId)
+          puts "image url : " + product.imageUrl
+        end
+        puts @products.inspect
       }
     end
   end
@@ -32,16 +34,15 @@ class ProductsController < ApplicationController
 
   def image_url_by_itemid (itemId)
     begin
-      req = Vacuum.new
-      req.associate_tag = 'foobar'
-      req.configure(
-          aws_access_key_id: AWS['AWS_ID'],
-          aws_secret_access_key: AWS['AWS_SECRET'],
-          associate_tag: 'tag',
-      )
-      res = req.item_lookup(query: { 'IdType' => 'ASIN', 'ItemId' => itemId, 'ResponseGroup' => 'Images'})
-      result = res.to_h
-      result['ItemLookupResponse']['Items']['Item']['MediumImage']['URL']
+
+      Amazon::Ecs.options = {
+        :associate_tag => 'haha',
+        :AWS_access_key_id => AWS['AWS_ID'],       
+        :AWS_secret_key => AWS['AWS_SECRET']
+      }
+
+      res = Amazon::Ecs.item_lookup(itemId,{:ResponseGroup => 'Images'})
+      res.first_item.get_hash('MediumImage')['URL']
     rescue
       nil
     end
