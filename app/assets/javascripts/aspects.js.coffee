@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+window.currentAspect = ''
+
 $(document).ready(->
   $(document).on('click','#textcloud span', {} , onAspectClick)
 )
@@ -9,8 +11,9 @@ $(document).ready(->
 onAspectClick = (e) ->
   target = $(e.currentTarget)
   console.log($('#product-info'))
+  window.currentAspect = target.html()
   $.ajax(
-    url: '/reviews.js?product_id=' + $('#product-info').find('.product-id').html() + '&keyword=' + target.html()
+    url: '/reviews.js?product_id=' + $('#product-info').find('.product-id').html() + '&keyword=' + window.currentAspect
     success: (data, textStatus, jqXHR)->
       console.log(data)
     error: (jqXHR, textStatus, errorThrown) ->

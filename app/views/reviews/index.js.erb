@@ -1,1 +1,4 @@
 $('#review-list').empty().append('<%= j render @reviews %>');
+$.each($('#review-list').find('p'), function (index, value){
+    $(value).html($(value).html().replace(new RegExp(window.currentAspect, "ig"), '<b style="color: #39d;">' + window.currentAspect + '</b>'));
+});
