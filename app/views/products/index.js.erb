@@ -10,3 +10,40 @@ $('#product-list').empty().append('<%= j render @products %>');
 $('#product-list').show();
 $('#product-show').hide();
 
+productIds = [
+<% @products.each do |t| %>
+'<%= t.productId %>',
+<% end %>];
+
+getProductImage = function(idArray){
+    var idString = '';
+    var i;
+
+    for(i = 0; i < idArray.length-1; i++){
+        idString = idString + idArray[i] + ',';
+    }
+    idString = idString + idArray[i];
+    $.ajax({
+        url: '/products/image_url.json?product_ids=' + idString,
+        success: function (data, textStatus, jqXHR){
+            for(var i = 0; i < data.length; i++){
+                $('#product-list').find('span.product-id:contains(' + idArray[i] +')').parent().find('img').attr('src', data[i]);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown){
+            console.log('Get images error. ' + textStatus);
+        }
+    });
+}
+
+var batchRetrievalNum = 5;
+var i = 0;
+while(i < productIds.length){
+    getProductImage(productIds.slice(i,i+batchRetrievalNum));
+    i = i + batchRetrievalNum;
+}
+
+
+
+
+
