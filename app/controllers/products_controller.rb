@@ -31,17 +31,20 @@ class ProductsController < ApplicationController
   private
 
   def image_url_by_itemid (itemId)
-    puts "item id:" + itemId
-    req = Vacuum.new
-    req.associate_tag = 'foobar'
-    req.configure(
-        aws_access_key_id: AWS['AWS_ID'],
-        aws_secret_access_key: AWS['AWS_SECRET'],
-        associate_tag: 'tag',
-    )
-    res = req.item_lookup(query: { 'IdType' => 'ASIN', 'ItemId' => itemId, 'ResponseGroup' => 'Images'})
-    result = res.to_h
-    result['ItemLookupResponse']['Items']['Item']['MediumImage']['URL']
+    begin
+      req = Vacuum.new
+      req.associate_tag = 'foobar'
+      req.configure(
+          aws_access_key_id: AWS['AWS_ID'],
+          aws_secret_access_key: AWS['AWS_SECRET'],
+          associate_tag: 'tag',
+      )
+      res = req.item_lookup(query: { 'IdType' => 'ASIN', 'ItemId' => itemId, 'ResponseGroup' => 'Images'})
+      result = res.to_h
+      result['ItemLookupResponse']['Items']['Item']['MediumImage']['URL']
+    rescue
+      nil
+    end
   end
 
 end
