@@ -6,7 +6,7 @@ Moview::Application.routes.draw do
   root 'products#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'products/image_url' => 'products#image_url'
 
   # Example of named route that can be invoked with purchase_url(id: products.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

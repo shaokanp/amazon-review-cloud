@@ -13,11 +13,9 @@ class ProductsController < ApplicationController
       }
       format.js{
         @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).entries
-        @products.each do |product|
-          product.imageUrl = image_url_by_itemid(product.productId)
-          puts "image url : " + product.imageUrl
-        end
-        puts @products.inspect
+        #@products.each do |product|
+        #  product.imageUrl = image_url_by_itemid(product.productId)
+        #end
       }
     end
   end
@@ -27,6 +25,16 @@ class ProductsController < ApplicationController
     @product.imageUrl = image_url_by_itemid(@product.productId)
     respond_to do |format|
       format.js
+    end
+  end
+
+  def image_url
+    productId = Product.where(productId: params[:product_id]).first.productId
+    url = image_url_by_itemid(productId)
+    respond_to do |format|
+      format.json{
+        render json: url
+      }
     end
   end
 
