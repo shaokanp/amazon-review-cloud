@@ -48,6 +48,7 @@ onProductClick = (e) ->
 
 onSearchSubmit = (e) ->
   loadTimes = 0
+  window.isAllLoaded = false
   $('#product-list').empty()
   loadProducts(loadTimes*batchLoadNum)
 
