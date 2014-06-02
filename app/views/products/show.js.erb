@@ -2,14 +2,23 @@ window.location.hash = '<%= @product.productId %>';
 
 $('#product-info').html('<%= escape_javascript(render partial:'product', locals: { product: @product }) %>');
 
-aspectsArray = [
+window.aspectsArray = [
 <% @product.aspects.each do |t| %>
-    {text: '<%= t.word %>', weight: <%= t.frequency %>},
+    {text: '<%= t.word %>', weight: <%= t.frequency %>, modifiers: [<% t.modifiers.each do |m| %>{text: '<%= m.word %>', weight: <%= m.frequency %>},<% end %>]},
 <% end %>];
 
-$('#textcloud').empty().jQCloud(aspectsArray);
+$('#textcloud').empty().jQCloud(window.aspectsArray);
 $('#review-list').empty();
 $('#product-list').css('display', 'none');
 $('#product-show').css('display', 'block');
+
+function sortByFrequency(a, b){
+    var f1 = a.weight;
+    var f2 = b.weight;
+    return ((f1 < f2) ? 1 : ((f1 > f2) ? -1 : 0));
+}
+$.each(window.aspectsArray, function(index, value){
+    value.modifiers.sort(sortByFrequency);
+});
 
 

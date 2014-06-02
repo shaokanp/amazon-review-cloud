@@ -15,14 +15,17 @@
         <div class="row">
           <div class="column small-8 small-centered">
             <div class="row">
-              <%= form_tag("/products.js", method: "get", remote: "true",id: "search-form") do %>
+              <form>
+                <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden">
+                    <input name="authenticity_token" type="hidden" value="">
+                </div>
                 <div class="small-10 columns">
-                    <%= text_field_tag(:keyword) %>
+                    <input id="keyword" name="keyword" type="text">
                 </div>
                 <div class="small-2 columns">
-                    <%= submit_tag "Search", class: "button tiny radius success" %>
+                    <input class="button tiny radius success" name="submit" type="button" value="Search">
                 </div>
-              <% end %>
+              </form>
             </div>
           </div>
         </div>
