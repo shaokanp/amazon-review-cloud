@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require jquery.easing
 //= require masonry/jquery.masonry
+//= require masonry/jquery.imagesloaded.min
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
