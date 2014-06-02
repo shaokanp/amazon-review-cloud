@@ -1,13 +1,9 @@
-<div class="row">
-  <div class="product-cell small-4 column">
-    <div class="product-image">
-      <%= image_tag("https://dl.dropboxusercontent.com/u/48841755/374848_304416479568670_1817682925_n.jpg") %>
-    </div>
-    <p>
-      <span class="product-title">
-        <%= product.title %>
-      </span>
-    </p>
-    <span class="product-id"><%= product.productId%></span>
+<div class="product-cell">
+  <div class="product-image">
+    <%= image_tag(product.imageUrl) %>
   </div>
+  <p class="product-title">
+    <%= product.title %>
+  </p>
+  <span class="product-id"><%= product.productId%></span>
 </div>

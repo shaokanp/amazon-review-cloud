@@ -35,22 +35,27 @@ body {
 }
 
 .product-cell{
+
+  @include border-radius(5px);
+  @include box-shadow(rgba(black, 0.3) 0 0 1px);
+
   cursor:pointer;
   background-color: #fff;
-  @include border-radius(5px);
   padding: 10px;
-  margin-top: 20px;
+  margin: 5px;
+  width: 30%;
+  display: inline-block;
+
+  &:hover{
+    @include box-shadow(rgba(black, 0.3) 2px 2px 2px);
+  }
+
   .product-image{
     text-align: center;
   }
   .product-title{
-       
+    margin: 0; 
   }
-
-  .product-price{
-
-  }
-
   .product-id{
     display: none;
   }
