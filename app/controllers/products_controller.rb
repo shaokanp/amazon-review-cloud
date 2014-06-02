@@ -8,11 +8,12 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        products = Product.where(title: /.*#{params[:keyword]}*/i)
+        products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).limit(15).skip(params[:since].to_i).entries
+        puts products.length
         render json: products
       }
       format.js{
-        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).entries
+        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).limit(15).skip(params[:since].to_i).entries
         #@products.each do |product|
         #  product.imageUrl = image_url_by_itemid(product.productId)
         #end

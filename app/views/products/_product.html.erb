@@ -1,19 +1,9 @@
 <div class="product-cell">
-
-    <div class="product-image">
-      <%= image_tag(product.imageUrl) %>
-    </div>
-
-
-  <p>
-    <span class="product-title">
-      <%= product.title %>
-    </span>
-  </p>
-  <p>
-    <span class="product-price">
-      <%= product.price %>
-    </span>
+  <div class="product-image">
+    <%= image_tag(product.imageUrl) %>
+  </div>
+  <p class="product-title">
+    <%= product.title %>
   </p>
   <span class="product-id"><%= product.productId%></span>
 </div>

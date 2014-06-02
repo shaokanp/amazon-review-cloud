@@ -5,6 +5,11 @@ showProductList = function(){
 $('#product-list').empty().append('<%= j render @products %>');
 showProductList();
 
+//$('#product-list').masonry({
+//  itemSelector: '.product-cell'
+//});
+
+
 window.location.hash = '';
 $('#product-list').empty().append('<%= j render @products %>');
 $('#product-list').show();
@@ -29,6 +34,11 @@ getProductImage = function(idArray){
             for(var i = 0; i < data.length; i++){
                 $('#product-list').find('span.product-id:contains(' + idArray[i] +')').parent().find('img').attr('src', data[i]);
             }
+
+            $('#product-list').masonry({        
+                itemSelector: '.product-cell',
+                animate:true
+            });
         },
         error: function (jqXHR, textStatus, errorThrown){
             console.log('Get images error. ' + textStatus);

@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require jquery.easing
 //= require tipsy
+//= require masonry/jquery.masonry
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

@@ -30,6 +30,7 @@ gem 'jquery-ui-rails'
 gem 'jqcloud-rails'
 gem 'jquery-easing-rails'
 gem 'tipsy-rails'
+gem 'masonry-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
