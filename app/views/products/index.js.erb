@@ -1,16 +1,19 @@
-showProductList = function(){
-  $('#product-list').animate({opacity: 1},600);
+var $newHtml = $('<%= j render @products %>');
+var $container = $('#product-list');
+var isAppend = $container.is(':empty') == false;
+
+$container.append($newHtml);
+//showProductList();
+if(isAppend){
+    $container.masonry('appended',$newHtml,true);
+}else{
+    $container.masonry('reload');  
 }
 
-$('#product-list').append('<%= j render @products %>');
-showProductList();
-
-$('#product-list').imagesLoaded( function(){
-    $('#product-list').masonry({        
-        itemSelector: '.product-cell',
-        animate:true
-    });
+$newHtml.imagesLoaded( function(){
+    $container.masonry('reload');
 });
+
 
 window.location.hash = '';
 $('#product-list').show();
@@ -39,13 +42,9 @@ getProductImage = function(idArray){
             for(var i = 0; i < data.length; i++){
                 $('#product-list').find('span.product-id:contains(' + idArray[i] +')').parent().find('img').attr('src', data[i]);
             }
-            $('#product-list').imagesLoaded( function(){  
-                $('#product-list').masonry({        
-                    itemSelector: '.product-cell',
-                    animate:true
-                });
-            });
-						
+            $newHtml.imagesLoaded( function(){  
+                $container.masonry('reload');
+            });	
             imageLoaded = imageLoaded + batchRetrievalNum;
             if(imageLoaded < productIds.length && ourKeyword == window.searchKeyword){
                 getProductImage(productIds.slice(imageLoaded,imageLoaded+batchRetrievalNum));
@@ -55,6 +54,10 @@ getProductImage = function(idArray){
             console.log('Get images error. ' + textStatus);
         }
     });
+}
+
+showProductList = function(){
+  $('#product-list').animate({opacity: 1},600);
 }
 
 getProductImage(productIds.slice(imageLoaded,imageLoaded+batchRetrievalNum));

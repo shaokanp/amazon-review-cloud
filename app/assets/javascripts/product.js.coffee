@@ -36,6 +36,11 @@ $(document).ready(->
         loadProducts(loadTimes*batchLoadNum)
         console.log('load ' + loadTimes)
   )
+
+  $('#product-list').masonry(
+    itemSelector: '.product-cell'
+  )
+
 )
 
 onProductClick = (e) ->
