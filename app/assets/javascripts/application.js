@@ -17,6 +17,7 @@
 //= require jqcloud
 //= require turbolinks
 //= require jquery.easing
+//= require tipsy
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

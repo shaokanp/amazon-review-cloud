@@ -3,9 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 window.currentAspect = ''
+window.aspectsArray = [];
 
 $(document).ready(->
+
   $(document).on('click','#textcloud span', {} , onAspectClick)
+  $(document).on('mouseover','#textcloud span', {} , onAspectHover)
 )
 
 onAspectClick = (e) ->
@@ -19,3 +22,18 @@ onAspectClick = (e) ->
     error: (jqXHR, textStatus, errorThrown) ->
       console.log('Get aspects error. ' + textStatus)
   )
+
+onAspectHover = (e) ->
+  target = e.currentTarget;
+  if (!$(target).attr('modifiers'))
+    console.log($.grep(window.aspectsArray, (a) -> return a.text == $(target).html())[0])
+    m = '';
+    $.each($.grep(window.aspectsArray, (a) -> return a.text == $(target).html())[0].modifiers, (index, value) ->
+      m = m + value.text + ','
+    )
+    $(target).attr('modifiers', m);
+    $(target).tipsy(
+      title: 'modifiers'
+      gravity: 'sw'
+    )
+    $(target).trigger('mouseover')

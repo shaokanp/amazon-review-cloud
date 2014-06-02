@@ -20,7 +20,6 @@ onProductClick = (e) ->
   $.ajax(
     url: '/products/' + $(e.currentTarget).children('.product-id').html() + '.js'
     success: (data, textStatus, jqXHR)->
-      console.log(data)
     error: (jqXHR, textStatus, errorThrown) ->
       console.log('Get aspects error. ' + textStatus)
   )
