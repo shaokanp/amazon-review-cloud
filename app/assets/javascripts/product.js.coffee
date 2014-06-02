@@ -5,7 +5,8 @@
 batchLoadNum = 15
 loadTimes = 0
 isLastLoadFinished = true
-searchKeyword = ''
+window.isAllLoaded = false
+window.searchKeyword = ''
 
 $(document).ready(->
   window.location.hash = ''
@@ -30,7 +31,7 @@ $(document).ready(->
   )
 
   $(window).scroll(() ->
-    if(loadTimes >= 1 && isLastLoadFinished == true)
+    if(loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
       if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
         loadProducts(loadTimes*batchLoadNum)
         console.log('load ' + loadTimes)
@@ -62,8 +63,9 @@ onSearchSubmit = (e) ->
 
 loadProducts = (since) ->
   isLastLoadFinished = false
+  window.searchKeyword = $('input[name=keyword]').val()
   $.ajax(
-    url: '/products.js?keyword=' + $('input[name=keyword]') + '&since=' + since
+    url: '/products.js?keyword=' + window.searchKeyword + '&since=' + since
     success: (data, textStatus, jqXHR)->
       loadTimes = loadTimes + 1
       isLastLoadFinished = true
@@ -71,8 +73,6 @@ loadProducts = (since) ->
       isLastLoadFinished = true
       console.log('Get aspects error. ' + textStatus)
   )
-
-
 
 showProductList = ->
   alert('ha')
