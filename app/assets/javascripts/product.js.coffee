@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+batchLoadNum = 15
+loadTimes = 0
+isLastLoadFinished = true
+searchKeyword = ''
+
 $(document).ready(->
   window.location.hash = ''
   $(document).on('click','.product-cell', {} , onProductClick)
@@ -14,6 +19,22 @@ $(document).ready(->
         $('#product-list').hide()
         $('#product-show').show()
   )
+
+  $('input[name=authenticity_token]').attr('value', $('meta[name=csrf-token]').attr('content'))
+  $('#search-box input[name=submit]').click(onSearchSubmit)
+  $(window).keydown((event) ->
+      if(event.keyCode == 13)
+        $('#search-box input[name=submit]').trigger('click')
+        event.preventDefault()
+        return false
+  )
+
+  $(window).scroll(() ->
+    if(loadTimes >= 1 && isLastLoadFinished == true)
+      if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
+        loadProducts(loadTimes*batchLoadNum)
+        console.log('load ' + loadTimes)
+  )
 )
 
 onProductClick = (e) ->
@@ -24,7 +45,11 @@ onProductClick = (e) ->
       console.log('Get aspects error. ' + textStatus)
   )
 
-$('#search-box input[type=submit]').click( (e) ->
+onSearchSubmit = (e) ->
+  loadTimes = 0
+  $('#product-list').empty()
+  loadProducts(loadTimes*batchLoadNum)
+
   $('#top-container').animate(
     top: "-40px"
   ,1000,'easeOutCubic')
@@ -34,7 +59,19 @@ $('#search-box input[type=submit]').click( (e) ->
   $('body').animate(
     backgroundColor: "#EEEEEE"
   ,1000)
-)
+
+loadProducts = (since) ->
+  isLastLoadFinished = false
+  $.ajax(
+    url: '/products.js?keyword=' + $('input[name=keyword]') + '&since=' + since
+    success: (data, textStatus, jqXHR)->
+      loadTimes = loadTimes + 1
+      isLastLoadFinished = true
+    error: (jqXHR, textStatus, errorThrown) ->
+      isLastLoadFinished = true
+      console.log('Get aspects error. ' + textStatus)
+  )
+
 
 
 showProductList = ->

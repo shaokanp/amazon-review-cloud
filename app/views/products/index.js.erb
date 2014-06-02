@@ -2,7 +2,7 @@ showProductList = function(){
   $('#product-list').animate({opacity: 1},600);
 }
 
-$('#product-list').empty().append('<%= j render @products %>');
+$('#product-list').append('<%= j render @products %>');
 showProductList();
 
 //$('#product-list').masonry({
@@ -11,7 +11,6 @@ showProductList();
 
 
 window.location.hash = '';
-$('#product-list').empty().append('<%= j render @products %>');
 $('#product-list').show();
 $('#product-show').hide();
 
