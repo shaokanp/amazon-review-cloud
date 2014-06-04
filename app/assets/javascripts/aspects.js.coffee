@@ -14,7 +14,6 @@ $(document).ready(->
 
 onAspectClick = (e) ->
   target = $(e.currentTarget)
-  console.log($('#product-info'))
   window.currentAspect = target.html()
   $.ajax(
     url: '/reviews.js?product_id=' + $('#product-info').find('.product-id').html() + '&keyword=' + window.currentAspect

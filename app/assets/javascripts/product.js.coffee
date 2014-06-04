@@ -7,7 +7,7 @@ loadTimes = 0
 isLastLoadFinished = true
 window.isAllLoaded = false
 window.searchKeyword = ''
-window.isSearching = true
+window.currentTask = 'search'
 history.pushState({},'', '#home')
 
 $(document).ready(->
@@ -36,7 +36,7 @@ $(document).ready(->
   )
 
   $(window).scroll(() ->
-    if(window.isSearching && loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
+    if(window.currentTask == 'search' && loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
       if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
         loadProducts(loadTimes*batchLoadNum)
     $('#mask').css({top:$(window).scrollTop()})
@@ -50,7 +50,7 @@ $(document).ready(->
   
 
 onProductClick = (e) ->
-  window.isSearching = false
+  window.currentTask = 'review'
   $('#product-list').hide()
   $('#loading-box').show()
   $.ajax(
@@ -63,7 +63,7 @@ onProductClick = (e) ->
 onSearchSubmit = (e) ->
   loadTimes = 0
   window.isAllLoaded = false
-  window.isSearching = true
+  window.currentTask = 'search'
   $('#product-list').empty()
   $('#loading-box').show()
   loadProducts(loadTimes*batchLoadNum)
