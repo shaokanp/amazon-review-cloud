@@ -13,10 +13,13 @@ class ProductsController < ApplicationController
         render json: products
       }
       format.js{
-        @products = Product.without(:aspects).where(title: /.* #{params[:keyword]} .*/i).desc(:reviewCount).limit(15).skip(params[:since].to_i).entries
-        #@products.each do |product|
-        #  product.imageUrl = image_url_by_itemid(product.productId)
-        #end
+        result = Product.without(:aspects)
+        keywords = params[:keyword].split(" ")
+        keywords.each do |keyword|
+          result = result.where(title: /.* #{keyword} .*/i)
+        end
+        result = result.desc(:reviewCount).limit(15).skip(params[:since].to_i)
+        @products = result.entries
       }
     end
   end
