@@ -15,15 +15,16 @@ $newHtml.imagesLoaded( function(){
 });
 
 
-history.pushState({}, '', '#search=' + window.searchKeyword);
-$('#product-list').show();
-$('#product-show').hide();
-
 productIds = [
 <% @products.each do |t| %>
 '<%= t.productId %>',
 <% end %>];
 if(productIds.length < 1) window.isAllLoaded = true
+
+history.pushState({}, '', '#search=' + window.searchKeyword);
+$('#loading-box').hide()
+$('#product-list').show();
+$('#product-show').hide();
 
 var imageLoaded = 0;
 var batchRetrievalNum = 5;

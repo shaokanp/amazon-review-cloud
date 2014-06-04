@@ -1,25 +1,32 @@
-<div class="product-image columns small-3">
+<div class="product-banner row">
+  <div class="product-image columns small-3">
     <%= image_tag(product.imageUrl) %>
-</div>
-<div class="product-detail  columns small-9">
-  <p class="product-title">
-    <%= product.title %>
-  </p>
-  <div class="product-brand">
-    <%= product.brand %>
   </div>
-  <p class="product-rating">
-    <%= product.title %>
-  </p>
-  <p class="product-price">
-    <%= product.title %>
-  </p>
+  <div class="product-detail  columns small-9">
+    <div class="product-title">
+      <%= product.title %>
+    </div>
+    <div class="product-brand">
+      <%= product.brand %>
+    </div>
 
+    <p class="product-price">
+      <%= product.price %>
+    </p>
+
+    <ul class="product-features">
+      <% product.features.each do |f| %>
+          <li><%= f %></li>
+      <%end%>
+
+    </ul>
+  </div>
 </div>
-<div class="info-title columns small-12">
+
+<div class="info-title">
   <span>Description</span>
 </div>
-<div class="product-description columns small-12">
+<div class="product-description">
   <%= raw product.description %>
 </div>
 

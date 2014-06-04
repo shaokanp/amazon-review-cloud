@@ -9,11 +9,12 @@ window.aspectsArray = [
 
 $('html, body').scrollTop(0)
 $('#textcloud').jQCloudClear();
-$('#textcloud').empty().jQCloud(window.aspectsArray);
+$('#textcloud').empty();
 $('#review-list').empty();
 $('#modifier-list').empty();
-$('#product-list').css('display', 'none');
-$('#product-show').css('display', 'block');
+$('#loading-box').hide()
+$('#product-list').hide();
+$('#product-show').show();
 
 function sortByFrequency(a, b){
     var f1 = a.weight;
@@ -23,5 +24,15 @@ function sortByFrequency(a, b){
 $.each(window.aspectsArray, function(index, value){
     value.modifiers.sort(sortByFrequency);
 });
+
+if(window.aspectsArray.length > 400) window.aspectsArray.length = 400;
+console.log(window.aspectsArray.length);
+$('#textcloud').css('height', function(){
+    if(window.aspectsArray.length <= 70)
+        return '350px';
+
+    return (350 + ((window.aspectsArray.length - 70)/10)*15) + 'px';
+});
+$('#textcloud').empty().jQCloud(window.aspectsArray);
 
 

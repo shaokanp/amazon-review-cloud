@@ -51,6 +51,8 @@ $(document).ready(->
 
 onProductClick = (e) ->
   window.isSearching = false
+  $('#product-list').hide()
+  $('#loading-box').show()
   $.ajax(
     url: '/products/' + $(e.currentTarget).children('.product-id').html() + '.js'
     success: (data, textStatus, jqXHR)->
@@ -62,7 +64,8 @@ onSearchSubmit = (e) ->
   loadTimes = 0
   window.isAllLoaded = false
   window.isSearching = true
-  $('#product-list').empty()
+  $('#product-list').hide().empty()
+  $('#loading-box').show()
   loadProducts(loadTimes*batchLoadNum)
 
   $('#top-container').animate(
