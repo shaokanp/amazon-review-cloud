@@ -39,6 +39,16 @@ body {
   #search-box{
     @include display-box;
     @include box-align(center);
+
+    input[name=keyword]{
+      @include border-radius(5px);
+      font-size: 16px;
+      height: 40px;
+    }
+    input[type=button]{
+      font-size: 16px;
+      width: 100%;
+    }
   }
 
 }
@@ -81,13 +91,30 @@ body {
   padding: 10px;
   .product-image{
     padding: 0 10px 0 0;
+    image{
+      width:100%;
+    }
+  }
+  .product-brand{
+    color: #AAAAAA;
   }
   .product-detail{
 
   }
+  .product-description{
+    padding: 10px;
+  }
   .product-id{
     display:none;
   }
+}
+
+.info-title{
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin: 20px 0 10px 0;
+  border-bottom: 1px solid #CCCCCC;
 }
 
 #product-show{

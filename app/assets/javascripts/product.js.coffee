@@ -67,7 +67,7 @@ onSearchSubmit = (e) ->
 
   $('#top-container').animate(
     top: "-40px"
-  ,1000,'easeOutCubic')
+  ,800,'easeOutCubic')
   $('#big-title-box').animate(
     opacity: 0
   ,600)

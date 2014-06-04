@@ -1,13 +1,26 @@
 <div class="product-image columns small-3">
-    <%= image_tag("https://dl.dropboxusercontent.com/u/48841755/images/loading.gif") %>
+    <%= image_tag(product.imageUrl) %>
 </div>
 <div class="product-detail  columns small-9">
   <p class="product-title">
     <%= product.title %>
   </p>
-  <p class="product-description">
+  <div class="product-brand">
+    <%= product.brand %>
+  </div>
+  <p class="product-rating">
     <%= product.title %>
   </p>
+  <p class="product-price">
+    <%= product.title %>
+  </p>
+
+</div>
+<div class="info-title columns small-12">
+  <span>Description</span>
+</div>
+<div class="product-description columns small-12">
+  <%= raw product.description %>
 </div>
 
 <span class="product-id"><%= product.productId%></span>
