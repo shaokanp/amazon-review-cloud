@@ -4,6 +4,8 @@ class Product
   attr_accessor :imageUrl
   attr_accessor :description
   attr_accessor :brand
+  attr_accessor :price
+  attr_accessor :features
 
   field :productId, type: String
   field :title, type: String
