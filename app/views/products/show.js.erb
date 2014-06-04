@@ -1,14 +1,16 @@
-window.location.hash = '<%= @product.productId %>';
+history.pushState({}, '', '#<%= @product.productId %>');
 
-$('#product-info').html('<%= escape_javascript(render partial:'product', locals: { product: @product }) %>');
+$('#product-info').html('<%= escape_javascript(render partial:'productInfo', locals: { product: @product }) %>');
 
 window.aspectsArray = [
 <% @product.aspects.each do |t| %>
     {text: '<%= t.word %>', weight: <%= t.frequency %>, modifiers: [<% t.modifiers.each do |m| %>{text: '<%= m.word %>', weight: <%= m.frequency %>},<% end %>]},
 <% end %>];
 
+$('#textcloud').jQCloudClear();
 $('#textcloud').empty().jQCloud(window.aspectsArray);
 $('#review-list').empty();
+$('#modifier-list').empty();
 $('#product-list').css('display', 'none');
 $('#product-show').css('display', 'block');
 

@@ -1,10 +1,37 @@
 // Place all the styles related to the aspects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "_base";
+
+$modifier-color: #CC1144;
 
 #textcloud{
   width: 890px;
   height: 600px;
+}
+
+#modifier-toolkit{
+  background-color: $modifier-color;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  z-index: 1000;
+  height: 40px;
+}
+
+#modifier-list{
+  margin-top: 15px;
+}
+
+.modifier-tag{
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  height: 35px;
+  font-size: 14px;
+  background-color: $modifier-color;
+  color: white;
+  @include border-radius(5px);
 }
 
 div.jqcloud {
@@ -13,33 +40,33 @@ div.jqcloud {
 
   }
   span.w1{
-    font-size: 14px;
+    font-size: 18px;
   }
   span.w2{
-    font-size: 20px;
-  }
-  span.w3{
     font-size: 24px;
   }
-  span.w4{
+  span.w3{
     font-size: 28px;
   }
-  span.w5{
+  span.w4{
     font-size: 32px;
   }
-  span.w6{
+  span.w5{
     font-size: 40px;
   }
-  span.w7{
+  span.w6{
     font-size: 44px;
   }
-  span.w8{
+  span.w7{
     font-size: 48px;
   }
-  span.w9{
+  span.w8{
     font-size: 56px;
   }
-  span.w10{
+  span.w9{
     font-size: 64px;
+  }
+  span.w10{
+    font-size: 72px;
   }
 }

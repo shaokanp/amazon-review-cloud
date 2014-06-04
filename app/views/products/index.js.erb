@@ -15,7 +15,7 @@ $newHtml.imagesLoaded( function(){
 });
 
 
-window.location.hash = '';
+history.pushState({}, '', '#search=' + window.searchKeyword);
 $('#product-list').show();
 $('#product-show').hide();
 

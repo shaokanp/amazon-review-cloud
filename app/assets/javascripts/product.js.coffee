@@ -7,19 +7,24 @@ loadTimes = 0
 isLastLoadFinished = true
 window.isAllLoaded = false
 window.searchKeyword = ''
+window.isSearching = true
+history.pushState({},'', '#home')
 
 $(document).ready(->
-  window.location.hash = ''
   $(document).on('click','.product-cell', {} , onProductClick)
-  $(window).on('navigate',(event, data) ->
-      direction = data.state.direction
-      if(direction == 'back')
-        $('#product-list').show()
-        $('#product-show').hide()
-      if(direction == 'forward')
-        $('#product-list').hide()
-        $('#product-show').show()
-  )
+
+  window.onpopstate = (event)->
+    if(location.hash != '#home')
+      $('#product-list').show()
+      $('#product-list').masonry('reload');
+      $('#product-show').hide()
+    else
+      location.reload()
+
+    event.preventDefault()
+    event.stopPropagation()
+    return false
+
 
   $('input[name=authenticity_token]').attr('value', $('meta[name=csrf-token]').attr('content'))
   $('#search-box input[name=submit]').click(onSearchSubmit)
@@ -31,7 +36,7 @@ $(document).ready(->
   )
 
   $(window).scroll(() ->
-    if(loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
+    if(window.isSearching && loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
       if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
         loadProducts(loadTimes*batchLoadNum)
         console.log('load ' + loadTimes)
@@ -44,6 +49,7 @@ $(document).ready(->
 )
 
 onProductClick = (e) ->
+  window.isSearching = false
   $.ajax(
     url: '/products/' + $(e.currentTarget).children('.product-id').html() + '.js'
     success: (data, textStatus, jqXHR)->
@@ -54,6 +60,7 @@ onProductClick = (e) ->
 onSearchSubmit = (e) ->
   loadTimes = 0
   window.isAllLoaded = false
+  window.isSearching = true
   $('#product-list').empty()
   loadProducts(loadTimes*batchLoadNum)
 

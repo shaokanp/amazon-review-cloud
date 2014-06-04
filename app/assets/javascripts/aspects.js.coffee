@@ -9,6 +9,7 @@ $(document).ready(->
 
   $(document).on('click','#textcloud span', {} , onAspectClick)
   $(document).on('mouseover','#textcloud span', {} , onAspectHover)
+  $(document).on('mouseleave','#textcloud span', {} , onAspectMouseLeave)
 )
 
 onAspectClick = (e) ->
@@ -23,17 +24,36 @@ onAspectClick = (e) ->
       console.log('Get aspects error. ' + textStatus)
   )
 
+  $('#modifier-list').empty()
+  $.each($.grep(window.aspectsArray, (a) -> return a.text == target.html())[0].modifiers, (index, value) ->
+    $('#modifier-list').append('<div class="modifier-tag"><span>' + value.text + '</span></div>')
+  )
+
+  console.log($("#modifier-list").offset().top)
+  $('html, body').animate({
+    scrollTop: $("#modifier-list").offset().top
+  }, 600);
+
 onAspectHover = (e) ->
   target = e.currentTarget;
   if (!$(target).attr('modifiers'))
-    console.log($.grep(window.aspectsArray, (a) -> return a.text == $(target).html())[0])
     m = '';
     $.each($.grep(window.aspectsArray, (a) -> return a.text == $(target).html())[0].modifiers, (index, value) ->
-      m = m + value.text + ','
+      if(index < 5)
+        m = m + value.text + ', '
     )
-    $(target).attr('modifiers', m);
-    $(target).tipsy(
-      title: 'modifiers'
-      gravity: 'sw'
-    )
-    $(target).trigger('mouseover')
+    m = m + '...'
+    $(target).attr('modifiers', m)
+#    $(target).tipsy(
+#      title: 'modifiers'
+#      gravity: 'sw'
+#    )
+#    $(target).trigger('mouseover')
+
+  $('#modifier-toolkit').css('top', (parseInt($(target).css('top')) - 40 + $('#textcloud').offset().top) + 'px')
+  $('#modifier-toolkit').css('left', (parseInt($(target).css('left')) + 20  + $('#textcloud').offset().left) + 'px')
+  $('#modifier-toolkit').children('span').html($(target).attr('modifiers'))
+  $('#modifier-toolkit').show()
+
+onAspectMouseLeave = (e) ->
+  $('#modifier-toolkit').hide()
