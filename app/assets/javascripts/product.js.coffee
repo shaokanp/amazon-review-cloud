@@ -34,7 +34,7 @@ $(document).ready(->
     if(loadTimes >= 1 && isLastLoadFinished && !window.isAllLoaded)
       if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
         loadProducts(loadTimes*batchLoadNum)
-        console.log('load ' + loadTimes)
+    $('#mask').css({top:$(window).scrollTop()})
   )
 
   $('#product-list').masonry(
@@ -42,6 +42,7 @@ $(document).ready(->
   )
 
 )
+  
 
 onProductClick = (e) ->
   $.ajax(
@@ -63,8 +64,8 @@ onSearchSubmit = (e) ->
   $('#big-title-box').animate(
     opacity: 0
   ,600)
-  $('body').animate(
-    backgroundColor: "#EEEEEE"
+  $('#mask').animate(
+    opacity: 1
   ,1000)
 
 loadProducts = (since) ->
