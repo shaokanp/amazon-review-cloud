@@ -2,6 +2,7 @@ class Product
   include Mongoid::Document
 
   attr_accessor :imageUrl
+  attr_accessor :description
 
   field :productId, type: String
   field :title, type: String

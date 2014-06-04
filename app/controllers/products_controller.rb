@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
         render json: products
       }
       format.js{
-        @products = Product.without(:aspects).where(title: /.*#{params[:keyword]}*/i).desc(:reviewCount).limit(15).skip(params[:since].to_i).entries
+        @products = Product.without(:aspects).where(title: /.* #{params[:keyword]} .*/i).desc(:reviewCount).limit(15).skip(params[:since].to_i).entries
         #@products.each do |product|
         #  product.imageUrl = image_url_by_itemid(product.productId)
         #end
@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.where(productId: params[:id]).first
     @product.imageUrl = image_url_by_itemid(@product.productId)
+    fetch_amazon_information(@product)
     respond_to do |format|
       format.js
     end
@@ -45,6 +46,27 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def fetch_amazon_information(product)
+    begin
+
+      Amazon::Ecs.options = {
+        :associate_tag => 'haha',
+        :AWS_access_key_id => AWS['AWS_ID'],       
+        :AWS_secret_key => AWS['AWS_SECRET']
+      }
+
+      res = Amazon::Ecs.item_lookup(product.productId,{:ResponseGroup => 'Medium'})
+      reviews = res.first_item/'EditorialReview'
+      reviews.each do |review|
+        product.description = Amazon::Element.get_unescaped(review, 'Content')
+        break
+      end
+
+    rescue
+      nil
+    end
+  end
 
   def image_url_by_itemid (itemId)
     begin
