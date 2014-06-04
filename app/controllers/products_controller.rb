@@ -63,6 +63,16 @@ class ProductsController < ApplicationController
       end
 
       product.imageUrl = res.first_item.get_hash('LargeImage')['URL']
+      product.brand = res.first_item.get_hash('ItemAttributes')['Brand']
+      product.price = (res.first_item/'ListPrice/FormattedPrice').text
+
+      # features
+      features = res.first_item/'Feature'
+      product.features = []
+      features.each do |feature|
+        product.features << feature.text   
+      end
+      
 
     rescue
       nil
