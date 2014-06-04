@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.where(productId: params[:id]).first
-    @product.imageUrl = image_url_by_itemid(@product.productId)
     fetch_amazon_information(@product)
     respond_to do |format|
       format.js
@@ -62,6 +61,8 @@ class ProductsController < ApplicationController
         product.description = Amazon::Element.get_unescaped(review, 'Content')
         break
       end
+
+      product.imageUrl = res.first_item.get_hash('LargeImage')['URL']
 
     rescue
       nil
