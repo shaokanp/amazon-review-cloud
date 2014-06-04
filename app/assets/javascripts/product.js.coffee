@@ -64,7 +64,7 @@ onSearchSubmit = (e) ->
   loadTimes = 0
   window.isAllLoaded = false
   window.isSearching = true
-  $('#product-list').hide().empty()
+  $('#product-list').empty()
   $('#loading-box').show()
   loadProducts(loadTimes*batchLoadNum)
 
