@@ -70,7 +70,7 @@ onSearchSubmit = (e) ->
   loadProducts(loadTimes*batchLoadNum)
 
   $('#top-container').animate(
-    top: "-280px"
+    top: -($('input[name=keyword]').offset().top - $('#top-container').offset().top - 15) + 'px'
   ,800,'easeOutCubic')
   $('#big-title-box').animate(
     opacity: 0
