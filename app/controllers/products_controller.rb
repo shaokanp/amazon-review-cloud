@@ -72,8 +72,10 @@ class ProductsController < ApplicationController
       # features
       features = res.first_item/'Feature'
       product.features = []
-      features.each do |feature|
-        product.features << feature.text   
+      if(features.length > 0)
+        features.each do |feature|
+          product.features << feature.text   
+        end
       end
       
 
