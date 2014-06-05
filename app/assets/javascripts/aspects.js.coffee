@@ -2,7 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+batchLoadNum = 10
 window.currentAspect = ''
+loadTimes = 0
+isLastLoadFinished = true
+window.isAllReviewLoaded = false
 window.aspectsArray = [];
 
 $(document).ready(->
@@ -10,18 +14,24 @@ $(document).ready(->
   $(document).on('click','#textcloud span', {} , onAspectClick)
   $(document).on('mouseover','#textcloud span', {} , onAspectHover)
   $(document).on('mouseleave','#textcloud span', {} , onAspectMouseLeave)
+
+  $(window).scroll(() ->
+    if(window.currentTask == 'review' && loadTimes >= 1 && isLastLoadFinished && !window.isAllReviewLoaded)
+      if($(window).scrollTop() + $(window).height() > $(document).height() - 50)
+        loadReviews(loadTimes*batchLoadNum)
+  )
 )
 
 onAspectClick = (e) ->
+  isLastLoadFinished = false
+  window.isAllReviewLoaded = false
   target = $(e.currentTarget)
+  window.currentTask = 'review'
+  loadTimes = 0
   window.currentAspect = target.html()
-  $.ajax(
-    url: '/reviews.js?product_id=' + $('#product-info').find('.product-id').html() + '&keyword=' + window.currentAspect
-    success: (data, textStatus, jqXHR)->
-      console.log(data)
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log('Get aspects error. ' + textStatus)
-  )
+  $('#review-list').empty()
+
+  loadReviews(loadTimes*batchLoadNum)
 
   $('#modifier-list').empty()
   $.each($.grep(window.aspectsArray, (a) -> return a.text == target.html())[0].modifiers, (index, value) ->
@@ -43,11 +53,6 @@ onAspectHover = (e) ->
     )
     m = m + '...'
     $(target).attr('modifiers', m)
-#    $(target).tipsy(
-#      title: 'modifiers'
-#      gravity: 'sw'
-#    )
-#    $(target).trigger('mouseover')
 
   $('#modifier-toolkit').css('top', (parseInt($(target).css('top')) - 40 + $('#textcloud').offset().top) + 'px')
   $('#modifier-toolkit').css('left', (parseInt($(target).css('left')) + 20  + $('#textcloud').offset().left) + 'px')
@@ -56,3 +61,15 @@ onAspectHover = (e) ->
 
 onAspectMouseLeave = (e) ->
   $('#modifier-toolkit').hide()
+
+loadReviews = (since)->
+  console.log('since: ' + since)
+  $.ajax(
+    url: '/reviews.js?since=' + since + '&product_id=' + $('#product-info').find('.product-id').html() + '&keyword=' + window.currentAspect
+    success: (data, textStatus, jqXHR)->
+      loadTimes = loadTimes + 1
+      isLastLoadFinished = true
+    error: (jqXHR, textStatus, errorThrown) ->
+      isLastLoadFinished = true
+      console.log('Get aspects error. ' + textStatus)
+  )

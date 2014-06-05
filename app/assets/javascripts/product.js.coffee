@@ -47,12 +47,12 @@ $(document).ready(->
   )
 
 )
-  
 
 onProductClick = (e) ->
   window.currentTask = 'review'
   $('#product-list').hide()
   $('#loading-box').show()
+  $('html, body').scrollTop(0)
   $.ajax(
     url: '/products/' + $(e.currentTarget).children('.product-id').html() + '.js'
     success: (data, textStatus, jqXHR)->
@@ -64,12 +64,13 @@ onSearchSubmit = (e) ->
   loadTimes = 0
   window.isAllLoaded = false
   window.currentTask = 'search'
-  $('#product-list').empty()
+  $('#product-list').empty().show()
+  $('#product-show').hide()
   $('#loading-box').show()
   loadProducts(loadTimes*batchLoadNum)
 
   $('#top-container').animate(
-    top: "-40px"
+    top: "-280px"
   ,800,'easeOutCubic')
   $('#big-title-box').animate(
     opacity: 0

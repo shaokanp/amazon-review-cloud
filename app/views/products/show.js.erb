@@ -7,7 +7,6 @@ window.aspectsArray = [
     {text: '<%= t.word %>', weight: <%= t.frequency %>, modifiers: [<% t.modifiers.each do |m| %>{text: '<%= m.word %>', weight: <%= m.frequency %>},<% end %>]},
 <% end %>];
 
-$('html, body').scrollTop(0)
 $('#textcloud').jQCloudClear();
 $('#textcloud').empty();
 $('#review-list').empty();
@@ -26,7 +25,6 @@ $.each(window.aspectsArray, function(index, value){
 });
 
 if(window.aspectsArray.length > 400) window.aspectsArray.length = 400;
-console.log(window.aspectsArray.length);
 $('#textcloud').css('height', function(){
     if(window.aspectsArray.length <= 70)
         return '350px';

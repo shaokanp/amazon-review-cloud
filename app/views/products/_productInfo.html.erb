@@ -13,13 +13,13 @@
     <p class="product-price">
       <%= product.price %>
     </p>
-
+    <%if !product.features.nil? %>
     <ul class="product-features">
       <% product.features.each do |f| %>
           <li><%= f %></li>
       <%end%>
-
     </ul>
+    <%end%>
   </div>
 </div>
 
